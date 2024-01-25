@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const route = useRoute()
+import {useCounterStore} from "~/stores/counter";
+
+const store = useCounterStore()
+const { increment } = store
 
 
 const {data} = await useFetch(`/api/first?id=${route.params.first}`)
@@ -12,6 +16,7 @@ const {data} = await useFetch(`/api/first?id=${route.params.first}`)
 		<div v-for="sous_rayon in data.list" class="w-96">
 			<SvdCard :link="`/rayon/r-${data.id}/${sous_rayon.id}`" :title="sous_rayon.title" :image="sous_rayon.img" />
 		</div>
+		<button type="button" @click="increment">+1 (le 2)</button>
 	</div>
 </template>
 

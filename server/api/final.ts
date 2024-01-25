@@ -1,6 +1,5 @@
 export default defineEventHandler((event) => {
     const { id } = getQuery(event)
-    console.log('olb',id)
     switch (id) {
         case '11':
             return {

@@ -1,5 +1,10 @@
 <script setup lang="ts">
-	const {data: rayons} = await useFetch('/api/rayons')
+import {useCounterStore} from "~/stores/counter";
+
+const store = useCounterStore()
+const { increment } = store
+
+const {data: rayons} = await useFetch('/api/rayons')
 </script>
 
 <template>
@@ -7,6 +12,7 @@
 		<div v-for="rayon in rayons.list" class="w-96">
 			<SvdCard :link="`/rayon/${rayon.id}`" :title="rayon.title" :image="rayon.img" />
 		</div>
+		<button type="button" @click="increment">+1 (le 3e)</button>
 	</div>
 </template>
 

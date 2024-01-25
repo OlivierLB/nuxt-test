@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useCounterStore } from '@/stores/counter'
 const {updateLoggedStatus} = useUtils()
+const route = useRoute()
+const store = useCounterStore()
+const count = computed(() => store.count)
 
 function signOut() {
 	updateLoggedStatus(false)
@@ -16,6 +20,7 @@ function signOut() {
 					alt="Son-vidéo.pro"
 				/>
 			</NuxtLink>
+			{{count}}
 			<svd-input name="search" placeholder="Recherche magique" />
 			<button @click="signOut">Se déconnecter</button>
 		</div>

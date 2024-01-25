@@ -2,5 +2,8 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
 })
