@@ -12,7 +12,6 @@ const {data: rayons} = await useFetch('/api/rayons')
 		<div v-for="rayon in rayons.list" class="w-96">
 			<SvdCard :link="`/rayon/${rayon.id}`" :title="rayon.title" :image="rayon.img" />
 		</div>
-		<button type="button" @click="increment">+1 (le 3e)</button>
 	</div>
 </template>
 

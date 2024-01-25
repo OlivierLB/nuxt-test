@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useCounterStore } from '@/stores/counter'
+import {useBasketStore} from "~/stores/basket";
+
+const store = useBasketStore()
 const {updateLoggedStatus} = useUtils()
-const route = useRoute()
-const store = useCounterStore()
-const count = computed(() => store.count)
+const items = computed(() => store.items)
+const total = computed(() => store.total)
 
 function signOut() {
 	updateLoggedStatus(false)
@@ -20,8 +21,13 @@ function signOut() {
 					alt="Son-vidéo.pro"
 				/>
 			</NuxtLink>
-			{{count}}
-			<svd-input name="search" placeholder="Recherche magique" />
+			<div>
+				{{total}} €
+			</div>
+			<NuxtLink href="/basket">
+				{{ items.length }}
+				Produit<span v-if="items.length > 1">s</span>
+			</NuxtLink>
 			<button @click="signOut">Se déconnecter</button>
 		</div>
 	</div>

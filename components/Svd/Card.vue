@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import {useBasketStore} from "~/stores/basket";
+
+const store = useBasketStore()
+const { addItem } = store
+
 const props = defineProps({
 	title: {
         type: String,
@@ -43,8 +48,14 @@ const card_class = computed(() => {
 </script>
 
 <template>
-	<NuxtLink :href="link" :class="card_class" class="block border-2 border-zinc-100 cursor-pointer font-mono font-extrabold flex items-center rounded-lg ">
-		<img v-if="image" class="w-24" :src="image" :alt="title" />
+	<NuxtLink :href="link" :class="card_class" class="block border-2 border-zinc-100 cursor-pointer font-mono font-extrabold flex items-center rounded-lg p-2 ">
+		<Icon v-if="image" :name="image" size="100" />
+		<Icon v-else name="ic:twotone-all-inbox" size="100" />
 		<span class="flex justify-center w-full">{{ title }}</span>
 	</NuxtLink>
+
+	<button type="button" @click="addItem({
+		label: title,
+		price: title.length
+	})">Ajouter au panier</button>
 </template>
